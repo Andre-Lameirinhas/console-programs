@@ -76,4 +76,3 @@ if __name__ == '__main__':
         if res == 'win':
             switch_wins += 1
     print(f'switch strategy win rate = {switch_wins / iterations * 100:.3f} %')
-

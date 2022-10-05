@@ -3,6 +3,7 @@ import os
 from sys import stdout
 import time
 
+
 class Hanoi:
 
     def __init__(self, n_discs, print_moves, visual):
@@ -76,6 +77,7 @@ class Hanoi:
             stdout.flush()
             time.sleep(0.5)
             #print("\n".join(rods_array[::-1]))
+
 
 if __name__ == "__main__":
 

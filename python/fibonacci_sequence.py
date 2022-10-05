@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import sys
 import time
 
+
 class Fibonacci:
 
     def __init__(self, number, dynamic, graph):
@@ -75,6 +76,7 @@ class Fibonacci:
         if n < 2:
             return n
         return self._exp_fib(n - 1) + self._exp_fib(n - 2)
+
 
 if __name__ == "__main__":
 
