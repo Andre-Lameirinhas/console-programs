@@ -1,5 +1,7 @@
 from random import randint
 from typing import List
+from sys import argv
+from time import perf_counter
 
 
 # TODO add randomness to opened door
@@ -56,8 +58,21 @@ def play_game(switch: bool, n_doors: int = 3):
         return 'loss'
 
 
+# TODO run both cases in parallel
 if __name__ == '__main__':
+
+    if len(argv) > 2:
+        print('invalid number of args')
+        exit(1)
+
     iterations = 10000
+
+    if len(argv) == 2:
+        iterations = int(argv[1])
+
+    print(f'executing Monty Hall scenario {iterations} times')
+
+    start = perf_counter()
 
     stick_wins = 0
     for i in range(iterations):
@@ -76,3 +91,6 @@ if __name__ == '__main__':
         if res == 'win':
             switch_wins += 1
     print(f'switch strategy win rate = {switch_wins / iterations * 100:.3f} %')
+
+    end = perf_counter()
+    print(f"elapsed time: {end - start:.3f} s")
