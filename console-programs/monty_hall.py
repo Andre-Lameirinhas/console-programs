@@ -4,7 +4,7 @@ from sys import argv
 from time import perf_counter
 
 
-# TODO add randomness to opened door
+# TODO: add randomness to opened door
 def open_goat_door(doors: List[str], selected_door_n: int):
     opened_door_n = -1
     for n, content in enumerate(doors):
@@ -58,13 +58,14 @@ def play_game(switch: bool, n_doors: int = 3):
         return 'loss'
 
 
-# TODO run both cases in parallel
+# TODO: run both cases in parallel
 if __name__ == '__main__':
 
     if len(argv) > 2:
         print('invalid number of args')
         exit(1)
 
+    # TODO: allow providing iterations as optional input
     iterations = 10000
 
     if len(argv) == 2:

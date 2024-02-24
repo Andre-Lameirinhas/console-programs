@@ -80,7 +80,9 @@ class Hanoi:
 
 
 if __name__ == "__main__":
-
+    # TODO: only allow -p or -v
+    # TODO: use letters in visual mode for numbers greater than 9
+    # TODO: limit number of discs in visual mode
     # Command line setup
     parser = argparse.ArgumentParser(description="Towers of Hanoi")
     parser.add_argument("n_discs", type=int, help="number of discs in the starting tower")
