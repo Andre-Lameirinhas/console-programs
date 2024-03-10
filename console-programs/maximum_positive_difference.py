@@ -1,44 +1,43 @@
 import math
+import sys
 import random
 import time
-
-list_size = 10_000
-random_list = [random.randint(1, 10_000) for _ in range(list_size)]
+from typing import List
 
 
-def double_loop() -> int:
-    print("using double loop approach")
+def double_loop(list_: List) -> int:
+    print("Using double loop approach")
     max_diff = 0
 
-    for pos, x in enumerate(random_list):
-        for y in random_list[:pos]:
+    for pos, x in enumerate(list_):
+        for y in list_[:pos]:
             if x - y > max_diff:
                 max_diff = x - y
 
     return max_diff
 
 
-def calc_min() -> int:
-    print("using calc min approach")
+def calc_min(list_: List) -> int:
+    print("Using calc min approach")
     max_diff = 0
 
-    for pos, x in enumerate(random_list):
+    for pos, x in enumerate(list_):
         if pos == 0:
             continue
 
-        min_value = min(random_list[:pos])
+        min_value = min(list_[:pos])
         if x - min_value > max_diff:
             max_diff = x - min_value
 
     return max_diff
 
 
-def storing_min() -> int:
-    print("using storing min approach")
+def store_min(list_: List) -> int:
+    print("Using store min approach")
     max_diff = 0
     min_value = math.inf
 
-    for x in random_list:
+    for x in list_:
         if x < min_value:
             min_value = x
 
@@ -48,12 +47,27 @@ def storing_min() -> int:
     return max_diff
 
 
-functions = [double_loop, calc_min, storing_min]
+if __name__ == "__main__":
+    list_size = 10_000
+    try:
+        if len(sys.argv) > 1:
+            list_size = int(sys.argv[1])
+    except ValueError:
+        print("Invalid list size")
+        exit(1)
 
-for function in functions:
-    start = time.perf_counter_ns()
-    res = function()
-    end = time.perf_counter_ns()
-    print(f"max positive diference = {res}")
-    print(f"elapsed time: {(end - start) / 1000000} ms")
-    print()
+    print(f"Calculating Maximum Positive Difference for a list of {list_size} elements")
+
+    random_list = [random.randint(1, list_size) for _ in range(list_size)]
+
+    functions = [double_loop, calc_min, store_min]
+    results = []
+
+    for function in functions:
+        start = time.perf_counter_ns()
+        results.append(function(random_list))
+        end = time.perf_counter_ns()
+
+        print(f"  elapsed time: {(end - start) / 1000000:.3f} ms")
+
+    print(f"Results = {results}")
